@@ -1,7 +1,6 @@
 #include "particle.hpp"
-#include <SDL2/SDL.h>
 
-void Particle::drawCircle(SDL_Renderer* renderer, int cx, int cy, int RADIUS) {
+void Particle::draw_particle(SDL_Renderer* renderer, int cx, int cy) {
     for (int y = -RADIUS; y <= RADIUS; y++) {
         for (int x = -RADIUS; x <= RADIUS; x++) {
 

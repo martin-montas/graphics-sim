@@ -1,6 +1,8 @@
 #ifndef SRC_PARTICLE_HPP_
 #define SRC_PARTICLE_HPP_
 
+#include <SDL2/SDL.h>
+
 #define RADIUS 10
 
 class Particle {
@@ -11,7 +13,7 @@ class Particle {
     SDL_Renderer* _renderer; /* pointer the renderer */
 
   public:
-    void drawCircle(SDL_Renderer* renderer, int cx, int cy, int radius);
+    void draw_particle(SDL_Renderer* renderer, int cx, int cy);
 };
 
 #endif // SRC_PARTICLE_HPP_

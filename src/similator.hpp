@@ -5,7 +5,7 @@
 #include "particle.hpp"
 
 class Simulator {
-    std::vector<Particle> particle; /* array of particle */
+    std::vector<Particle> particle; /* array of particles */
 
   public:
     void simulate();
