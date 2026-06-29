@@ -11,13 +11,8 @@
 #define K                    0.05
 #define FRICTION             0.85
 
-int force_matrix[3][3];        /* matrix holding force amount between particles */
-int min_distance_matrix[3][3]; /* matrix holding min distance between particles */
-int radii_matrix[3][3];        /* matrix holding max distance between particles */
-
 struct Vec2 {
-    int x, y;
-
+    int   x, y;
     Vec2& operator+=(const Vec2& other) {
         x += other.x;
         y += other.y;
@@ -30,8 +25,6 @@ struct Vec2 {
         return *this;
     }
 };
-
-enum ParticleType { NORMAL, ATTRACTED, REPULSED };
 
 class Particle {
     SDL_Renderer* _rend;      /* pointer the renderer */
