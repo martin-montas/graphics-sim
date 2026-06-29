@@ -6,9 +6,6 @@
 #include <random>
 #include "particle.hpp"
 
-#define WIDTH  800
-#define HEIGHT 600
-
 class Simulator {
     SDL_Window*   window;   /* pointer to sdl window */
     SDL_Renderer* renderer; /*pointer to sdl renderer */
@@ -18,7 +15,7 @@ class Simulator {
     std::vector<Particle*> swarm; /* array of particles */
   public:
     void run_sim();
-    void init_sdl();
     void generate_particles();
+    void set_tables();
 };
 #endif // !SRC_SIMULATOR_HPP_

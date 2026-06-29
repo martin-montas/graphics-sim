@@ -1,8 +1,11 @@
-#ifndef SRC_GLOBAL_HPP_
-#define SRC_GLOBAL_HPP_
+#pragma once
 
-extern int force_matrix[3][3];        /* matrix holding force amount between particles */
-extern int min_distance_matrix[3][3]; /* matrix holding min distance between particles */
-extern int radii_matrix[3][3];        /* matrix holding max distance between particles */
+#define WIDTH  800
+#define HEIGHT 600
 
-#endif // SRC_GLOBAL_HPP_
+#define _NUM_TYPE 5
+
+extern float force_matrix[_NUM_TYPE][_NUM_TYPE]; /* matrix holding force amount between particles */
+extern float min_distance_matrix[_NUM_TYPE]
+                                [_NUM_TYPE];     /* matrix holding min distance between particles */
+extern float radii_matrix[_NUM_TYPE][_NUM_TYPE]; /* matrix holding max distance between particles */

@@ -4,8 +4,7 @@ CXX := g++
 CXXFLAGS := -g -std=c++20  
 LDFLAGS := -lSDL2
 
-COMMON_OBJS := main.o particle.o  \
-			   simulator.o
+COMMON_OBJS := main.o particle.o   simulator.o  global.o \
 
 particles: $(COMMON_OBJS)
 	$(CXX) $^ -g -o $@ $(LDFLAGS)
@@ -20,6 +19,10 @@ particle.o: src/particle.cpp src/particle.hpp
 	$(CXX) -c $< $(CXXFLAGS)
 
 simulator.o: src/simulator.cpp src/simulator.hpp
+	$(CXX) -c $< $(CXXFLAGS)
+
+
+global.o: src/global.cpp src/global.hpp
 	$(CXX) -c $< $(CXXFLAGS)
 
 # =====================================================
