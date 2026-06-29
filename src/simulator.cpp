@@ -1,4 +1,5 @@
 #include "simulator.hpp"
+#include "global.hpp"
 #include "particle.hpp"
 #include <random>
 
@@ -74,6 +75,7 @@ void Simulator::run_sim() {
         SDL_RenderClear(renderer);
         /* update here */
         for (auto p : swarm) {
+            /* TODO: update method goes on top here */
             p->draw();
         }
         SDL_RenderPresent(renderer);

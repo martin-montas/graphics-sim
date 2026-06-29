@@ -6,10 +6,31 @@
 #define BETA                 0.3
 #define RADIUS               10
 #define PARTICLE_KIND_AMOUNT 2
-#define PARTICLE_WIDTH       10
-#define PARTICLE_HEIGHT      10
+#define PARTICLE_WIDTH       5
+#define PARTICLE_HEIGHT      5
+#define K                    0.05
+#define FRICTION             0.85
 
-// int attraction_matrix[PARTICLE_KIND_AMOUNT][PARTICLE_KIND_AMOUNT];
+int force_matrix[3][3];        /* matrix holding force amount between particles */
+int min_distance_matrix[3][3]; /* matrix holding min distance between particles */
+int radii_matrix[3][3];        /* matrix holding max distance between particles */
+
+struct Vec2 {
+    int x, y;
+
+    Vec2& operator+=(const Vec2& other) {
+        x += other.x;
+        y += other.y;
+        return *this;
+    }
+
+    Vec2& operator*=(const Vec2& other) {
+        x *= other.x;
+        y *= other.y;
+        return *this;
+    }
+};
+
 enum ParticleType { NORMAL, ATTRACTED, REPULSED };
 
 class Particle {
@@ -17,17 +38,22 @@ class Particle {
     SDL_Rect      _rect;      /* pointer the rect */
     Uint8         _r, _g, _b; /* color for the given particle */
     ParticleType  _type;      /* type particle */
-    float         _ax;        /* atractor point x */
-    float         _ay;        /* atractor point y */
     int           _width;     /*  how wide the particle */
     int           _height;    /* how tall the particle */
-    float         _dx;        /* direction point x */
-    float         _dy;        /* direction point y */
+    int           _min_dist;  /* min distance of single particle */
+    int           _max_dist;  /* max distance of single particle */
+    int           _vx;        /* velocity of particle */
+    int           _vy;        /* velocity of particle */
 
   public:
     int _x;    /* horizontal coordinate */
     int _y;    /* vertical coordinate */
     int _kind; /* to identify each type of particle */
+
+    void  update(std::vector<Particle*>& swarm);
+    void  draw();
+    float force_handler(float d, int p1_kind, int p2_kind);
+    float direction();
 
     inline Particle(int kind, int x, int y, int r, int g, int b, ParticleType t,
                     SDL_Renderer* rend) {
@@ -42,10 +68,6 @@ class Particle {
 
         _rect = {x, y, PARTICLE_WIDTH, PARTICLE_HEIGHT};
     }
-    void  update();
-    void  draw();
-    float force_handler(float d, int p1_kind, int p2_kind);
-    float direction();
 };
 
 #endif // SRC_PARTICLE_HPP_
