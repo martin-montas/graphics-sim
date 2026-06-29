@@ -5,6 +5,7 @@ CXXFLAGS := -g -std=c++20
 LDFLAGS := -lSDL2
 
 COMMON_OBJS := main.o particle.o  \
+			   simulator.o
 
 particles: $(COMMON_OBJS)
 	$(CXX) $^ -g -o $@ $(LDFLAGS)

@@ -3,15 +3,18 @@
 
 #include <SDL2/SDL.h>
 
-#define BETA                 0.3;
+#define BETA                 0.3
 #define RADIUS               10
-#define PARTICLE_KIND_AMOUNT 2;
+#define PARTICLE_KIND_AMOUNT 2
+#define PARTICLE_WIDTH       10
+#define PARTICLE_HEIGHT      10
 
-int attraction_matrix[PARTICLE_KIND_AMOUNT][PARTICLE_KIND_AMOUNT];
+// int attraction_matrix[PARTICLE_KIND_AMOUNT][PARTICLE_KIND_AMOUNT];
 enum ParticleType { NORMAL, ATTRACTED, REPULSED };
 
 class Particle {
-    SDL_Renderer* _renderer;  /* pointer the renderer */
+    SDL_Renderer* _rend;      /* pointer the renderer */
+    SDL_Rect      _rect;      /* pointer the rect */
     Uint8         _r, _g, _b; /* color for the given particle */
     ParticleType  _type;      /* type particle */
     float         _ax;        /* atractor point x */
@@ -26,25 +29,23 @@ class Particle {
     int _y;    /* vertical coordinate */
     int _kind; /* to identify each type of particle */
 
-    inline explicit Particle(int kind, int x, int y, int w, int h, Uint8 r, int g, int b,
-                             ParticleType t, float ax, float ay, float dx, float dy) {
-        x       = x;
-        y       = y;
-        _width  = w;
-        _height = h;
-        _r      = r;
-        _g      = g;
-        _b      = b;
-        _type   = t;
-        _ax     = ax;
-        _ay     = ay;
-        _dx     = dx;
-        _dy     = dy;
-        _kind   = kind;
+    inline Particle(int kind, int x, int y, int r, int g, int b, ParticleType t,
+                    SDL_Renderer* rend) {
+        _x    = x;
+        _y    = y;
+        _r    = r;
+        _g    = g;
+        _b    = b;
+        _type = t;
+        _kind = kind;
+        _rend = rend;
+
+        _rect = {x, y, PARTICLE_WIDTH, PARTICLE_HEIGHT};
     }
-    void  particle_update(SDL_Renderer* renderer, int cx, int cy);
-    float particle_force_handler(float d, int p1_kind, int p2_kind);
-    float particle_direction();
+    void  update();
+    void  draw();
+    float force_handler(float d, int p1_kind, int p2_kind);
+    float direction();
 };
 
 #endif // SRC_PARTICLE_HPP_
