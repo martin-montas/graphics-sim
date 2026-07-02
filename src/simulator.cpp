@@ -11,7 +11,7 @@ void Simulator::generate_particles() {
     std::uniform_int_distribution<int> y_val(0, HEIGHT);
     std::uniform_int_distribution<int> color(0, 2);
 
-    for (int i = 0; i < 1200; i++) {
+    for (int i = 0; i < 1260; i++) {
         int x = x_val(gen);
         int y = y_val(gen);
         int r = color(gen);

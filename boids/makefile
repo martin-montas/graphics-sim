@@ -4,9 +4,9 @@ CXX := g++
 CXXFLAGS := -g -std=c++20  
 LDFLAGS := -lSDL2
 
-COMMON_OBJS := main.o particle.o   simulator.o  global.o \
+COMMON_OBJS := main.o boid.o   simulator.o  global.o \
 
-particles: $(COMMON_OBJS)
+boid: $(COMMON_OBJS)
 	$(CXX) $^ -g -o $@ $(LDFLAGS)
 
 # =====================================================
@@ -15,7 +15,7 @@ particles: $(COMMON_OBJS)
 main.o: main.cpp
 	$(CXX) -c $< $(CXXFLAGS)
 
-particle.o: src/particle.cpp src/particle.hpp
+boid.o: src/boid.cpp src/boid.hpp
 	$(CXX) -c $< $(CXXFLAGS)
 
 simulator.o: src/simulator.cpp src/simulator.hpp
@@ -30,7 +30,7 @@ global.o: src/global.cpp src/global.hpp
 # =====================================================
 
 clean:
-	rm -f *.o particles
+	rm -f *.o boid
 
 format:
 	find . \( -name "*.cpp" -o -name "*.hpp" \) | \

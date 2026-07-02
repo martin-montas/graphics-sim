@@ -10,7 +10,7 @@
 #define PARTICLE_WIDTH  5
 #define PARTICLE_HEIGHT 5
 #define K               0.05
-#define FRICTION        0.85;
+#define FRICTION        0.85
 
 using namespace std;
 

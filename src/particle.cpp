@@ -95,8 +95,8 @@ void Particle::update(std::vector<Particle*>& swarm) {
     _x = (_x + WIDTH) % WIDTH;
     _y = (_y + HEIGHT) % HEIGHT;
 
-    velocity.x *= FRICTION;
-    velocity.y *= FRICTION;
+    // velocity.x *= FRICTION;
+    // velocity.y *= FRICTION;
 }
 
 void Particle::draw() {
