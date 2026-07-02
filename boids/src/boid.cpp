@@ -6,28 +6,30 @@
 #include <cstdio>
 #include <vector>
 
+void Boid::rotate(float angle) {
+    int   i = 0;
+    float x;
+    float y;
+    float cx = (_ver[0].x + _ver[1].x + _ver[2].x) / 3.0f;
+    float cy = (_ver[0].y + _ver[1].y + _ver[2].y) / 3.0f;
+    while (i < 3) {
+        x         = _ver[i].x - cx;
+        y         = _ver[i].y - cy;
+        float c   = cos(angle);
+        float s   = sin(angle);
+        _ver[i].x = x * c - y * s + cx;
+        _ver[i].y = x * s + y * c + cy;
+        i += 1;
+    }
+}
+
 void Boid::update(std::vector<Boid*> swarm) {
     // this fomula calculates the radius of the flock
     // Formula: (max(abs(x_1 - x_2) , abs(y_1 - y_2)) <= 2;  2 being the radius
 
-    Vec2  direction = {(float)_ver[0].x - _ver[1].x, (float)_ver[0].y - _ver[1].y};
-    float distance  = std::sqrt((direction.x * direction.x) + (direction.y * direction.y));
-    Vec2  norm      = {direction.x / distance, direction.y / distance};
+    // Vec2 direction = {_ver[0].y - _ver[1].y};
 
-    int i = 0;
-    int x;
-    int y;
-    while (i <= 2) {
-        x = _ver[i].x * cos(1) - _ver[i].y * sin(1);
-        y = _ver[i].x * sin(1) + _ver[i].y * cos(1);
-
-        _ver[i].x += x;
-        _ver[i].y += y;
-
-        i += 1;
-    }
-
-    check_doundries();
+    // check_doundries();
 
     // for (auto b : swarm) {
     //     if (b != this) {
@@ -64,7 +66,6 @@ void Boid::check_doundries() {
 }
 
 void Boid::draw() {
-
     SDL_RenderDrawLine(_rend, _ver[0].x, _ver[0].y, _ver[1].x, _ver[1].y);
     SDL_RenderDrawLine(_rend, _ver[1].x, _ver[1].y, _ver[2].x, _ver[2].y);
     SDL_RenderDrawLine(_rend, _ver[2].x, _ver[2].y, _ver[0].x, _ver[0].y);

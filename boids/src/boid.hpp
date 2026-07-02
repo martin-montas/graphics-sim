@@ -29,6 +29,7 @@ struct Vec2 {
 
 class Boid {
     SDL_Renderer* _rend; /* pointer to renderer object */
+    float         angle = 0.0f;
 
   public:
     int       x;       /* coodinate x */
@@ -43,6 +44,7 @@ class Boid {
     }
 
     void draw();
+    void rotate(float rotate);
     void update(std::vector<Boid*> swarm);
     void check_doundries();
 };

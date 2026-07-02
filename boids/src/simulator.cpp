@@ -6,12 +6,12 @@
 #include <random>
 
 // Triangle size configuration (identical for all)
-const int TRIANGLE_WIDTH  = 10;
-const int TRIANGLE_HEIGHT = 10;
+const int TRIANGLE_WIDTH  = 30;
+const int TRIANGLE_HEIGHT = 30;
 
 void Simulator::generate_boids() {
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 1; i++) {
         int x = static_cast<int>(rand() % (WIDTH - static_cast<int>(TRIANGLE_WIDTH)));
         int y = static_cast<int>(rand() % (HEIGHT - static_cast<int>(TRIANGLE_HEIGHT)));
 
